@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>115學年度 國企系企業專題組別暨報告順序抽籤結果</title>
+    <!-- 引入 Tailwind CSS 用於結構化排版 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 引入 Google Fonts 中文字體 Noto Serif TC（宋體學術風）與英文字體 Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Serif+TC:wght@400;600;700;900&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['"Noto Serif TC"', 'Georgia', 'serif'],
+                        sans: ['Inter', '"Noto Sans TC"', 'sans-serif'],
+                        display: ['"Playfair Display"', 'serif'],
+                    },
+                    colors: {
+                        academic: {
+                            navy: '#0C2340',     // 經典牛津深藍
+                            blue: '#1D4ED8',     // 學術蔚藍
+                            gold: '#C5A059',     // 典雅金
+                            goldlight: '#F5E6C4',// 亮金色背景
+                            gray: '#F8FAFC',     // 溫和淺灰底色
+                            darkbg: '#111827',   // 暗色背景
+                            darkcard: '#1F2937'  // 暗色卡片
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* 額外學術風格微調 */
+        body {
+            font-family: 'Inter', 'Noto Sans TC', sans-serif;
+            background-color: #f8fafc;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .academic-serif {
+            font-family: 'Noto Serif TC', serif;
+        }
+        /* 學術紙張紋理與邊框 */
+        .academic-border {
+            border-image: linear-gradient(to right, #0C2340, #C5A059, #0C2340) 1;
+        }
+        /* 自訂滾動條 */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #C5A059;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0C2340;
+        }
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+            body {
+                background-color: white !important;
+                color: black !important;
+            }
+            .card {
+                box-shadow: none !important;
+                border: 1px solid #ccc !important;
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body class="text-slate-800 antialiased min-h-screen pb-16">
+
+    <!-- 暗色模式/亮色模式切換 + 列印按鈕 -->
+    <div class="fixed top-4 right-4 z-50 flex gap-2 no-print">
+        <button onclick="window.print()" class="bg-white hover:bg-slate-100 text-slate-700 font-semibold px-3 py-2 rounded-lg shadow-md border border-slate-200 text-sm flex items-center gap-1 transition-all">
+            <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+            列印 / 存為PDF
+        </button>
+        <button id="themeToggleBtn" onclick="toggleDarkMode()" class="bg-white hover:bg-slate-100 text-slate-700 p-2 rounded-lg shadow-md border border-slate-200 transition-all">
+            <svg id="themeIcon" class="w-5 h-5 text-amber-500" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path></svg>
+        </button>
+    </div>
+
+    <!-- 頂部學術裝飾線 -->
+    <div class="h-2 bg-gradient-to-r from-academic-navy via-academic-gold to-academic-navy w-full no-print"></div>
+
+    <!-- 主體內容區 -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10">
+
+        <!-- 官方學術標頭區 -->
+        <header class="text-center mb-12 relative">
+            <h1 class="text-3xl sm:text-5xl font-black academic-serif text-academic-navy dark:text-white leading-tight tracking-wide mb-4">
+                115學年度 國企系企業專題組別暨報告順序抽籤結果
+            </h1>
+            <div class="w-32 h-1 bg-academic-gold mx-auto mb-5 rounded-full"></div>
+            <p class="text-slate-500 dark:text-slate-400 text-sm max-w-2xl mx-auto font-sans leading-relaxed">
+                指導老師分配 及 專題發表報告順序抽籤 之紀錄。
+            </p>
+            <p class="text-xs text-slate-400 dark:text-slate-500 mt-2 font-mono">
+                資料來源時間：2026年6月15日 12:31:22 [GMT+8]
+            </p>
+        </header>
+
+        <!-- 數據指標看板 (Dashboard Stats) -->
+        <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-10 no-print">
+            <!-- 指標 1 -->
+            <div class="bg-white dark:bg-academic-darkcard p-5 rounded-xl border border-slate-100 dark:border-slate-800 shadow-sm flex items-center gap-4 transition-all hover:shadow-md">
+                <div class="p-3 bg-blue-50 dark:bg-slate-700/50 rounded-lg text-academic-navy dark:text-academic-gold">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                </div>
+                <div>
+                    <span class="block text-xs text-slate-400 font-medium tracking-wider uppercase">專題組別總計</span>
+                    <span class="text-2xl font-black font-mono text-slate-800 dark:text-white">12 <span class="text-sm font-normal text-slate-500 dark:text-slate-400">組</span></span>
+                </div>
+            </div>
+            <!-- 指標 2 -->
+            <div class="bg-white dark:bg-academic-darkcard p-5 rounded-xl border border-slate-100 dark:border-slate-800 shadow-sm flex items-center gap-4 transition-all hover:shadow-md">
+                <div class="p-3 bg-amber-50 dark:bg-slate-700/50 rounded-lg text-academic-gold">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                </div>
+                <div>
+                    <span class="block text-xs text-slate-400 font-medium tracking-wider uppercase">參與學生人數</span>
+                    <span class="text-2xl font-black font-mono text-slate-800 dark:text-white">70 <span class="text-sm font-normal text-slate-500 dark:text-slate-400">人</span></span>
+                </div>
+            </div>
+            <!-- 指標 3 -->
+            <div class="bg-white dark:bg-academic-darkcard p-5 rounded-xl border border-slate-100 dark:border-slate-800 shadow-sm flex items-center gap-4 transition-all hover:shadow-md">
+                <div class="p-3 bg-purple-50 dark:bg-slate-700/50 rounded-lg text-purple-600">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path></svg>
+                </div>
+                <div>
+                    <span class="block text-xs text-slate-400 font-medium tracking-wider uppercase">學術指導教授</span>
+                    <span class="text-2xl font-black font-mono text-slate-800 dark:text-white">6 <span class="text-sm font-normal text-slate-500 dark:text-slate-400">位</span></span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 工具列：搜尋、篩選與檢視分頁 (Toolbar) -->
+        <div class="bg-white dark:bg-academic-darkcard rounded-2xl p-6 shadow-sm border border-slate-100 dark:border-slate-800 mb-8 no-print">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <!-- 搜尋與篩選條件 -->
+                <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 flex-1">
+                    <div class="relative flex-1 max-w-md">
+                        <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <svg class="h-5 w-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                        </span>
+                        <input type="text" id="searchInput" oninput="handleSearch()" placeholder="搜尋姓名、學號、組別、指導老師..." 
+                               class="block w-full pl-10 pr-4 py-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-academic-gold dark:text-white transition-all">
+                    </div>
+                    <!-- 指導老師下拉快速過濾 -->
+                    <select id="advisorFilter" onchange="handleFilter()" class="block py-2.5 px-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-academic-gold dark:text-white transition-all">
+                        <option value="all">所有指導老師</option>
+                        <option value="胡毓彬">胡毓彬 教授</option>
+                        <option value="林欣美">林欣美 教授</option>
+                        <option value="駱世民">駱世民 教授</option>
+                        <option value="莊文彬">莊文彬 教授</option>
+                        <option value="吳淑貞">吳淑貞 教授</option>
+                        <option value="許文忠">許文忠 教授</option>
+                    </select>
+                </div>
+
+                <!-- 檢視模式切換鈕 -->
+                <div class="flex bg-slate-100 dark:bg-slate-800 p-1.5 rounded-xl border border-slate-200/50 dark:border-slate-700">
+                    <button id="tab-group" onclick="switchView('group')" class="px-4 py-2 text-xs sm:text-sm font-bold rounded-lg transition-all text-slate-700 dark:text-slate-300 bg-white dark:bg-slate-700 shadow-sm">
+                        依組別排列 (1-12)
+                    </button>
+                    <button id="tab-order" onclick="switchView('order')" class="px-4 py-2 text-xs sm:text-sm font-bold rounded-lg transition-all text-slate-500 dark:text-slate-400 hover:text-slate-700">
+                        依報告順序 (1-12)
+                    </button>
+                    <button id="tab-advisor" onclick="switchView('advisor')" class="px-4 py-2 text-xs sm:text-sm font-bold rounded-lg transition-all text-slate-500 dark:text-slate-400 hover:text-slate-700">
+                        依教授分組
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 視圖呈現區域 -->
+        <main>
+            <!-- 1. 依組別視圖 -->
+            <div id="view-group" class="view-content active">
+                <div id="group-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- 卡片內容由 JS 動態生成 -->
+                </div>
+            </div>
+
+            <!-- 2. 依報告順序 (Timeline) 視圖 -->
+            <div id="view-order" class="view-content hidden">
+                <div class="relative border-l-2 border-academic-gold/50 ml-4 md:ml-8 pl-6 md:pl-10 space-y-12" id="order-timeline">
+                    <!-- 時間軸內容由 JS 動態生成 -->
+                </div>
+            </div>
+
+            <!-- 3. 依指導教授分群視圖 -->
+            <div id="view-advisor" class="view-content hidden space-y-10">
+                <!-- 由 JS 動態依教授產出對應組別 -->
+            </div>
+
+            <!-- 查無資料提示 -->
+            <div id="no-results" class="hidden text-center py-16 bg-white dark:bg-academic-darkcard rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm">
+                <svg class="mx-auto h-12 w-12 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                <h3 class="mt-4 text-base font-semibold text-slate-700 dark:text-slate-300">查無任何匹配數據</h3>
+                <p class="mt-2 text-sm text-slate-500 dark:text-slate-400">請嘗試調整搜尋字眼或指導老師篩選條件。</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- 優雅的學術頁尾 -->
+    <footer class="mt-24 border-t border-slate-200 dark:border-slate-800 pt-8 max-w-7xl mx-auto px-4 text-center">
+        <p class="text-xs text-slate-400 dark:text-slate-500 mb-2 font-mono">
+            國立暨南國際大學 國際企業學系 115學年度企業專題
+        </p>
+    </footer>
+
+    <!-- 客製化詳情彈出視窗 (Modal) -->
+    <div id="detailsModal" class="fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <!-- 遮罩背景 -->
+            <div onclick="closeModal()" class="fixed inset-0 bg-slate-900 bg-opacity-70 transition-opacity" aria-hidden="true"></div>
+
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+
+            <!-- 彈窗本體 -->
+            <div class="inline-block align-bottom bg-white dark:bg-academic-darkcard rounded-2xl text-left overflow-hidden shadow-2xl transform transition-all sm:my-8 sm:align-middle sm:max-w-xl sm:w-full border border-academic-gold/20">
+                <div class="absolute top-4 right-4">
+                    <button onclick="closeModal()" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    </button>
+                </div>
+                <div class="p-6 sm:p-8" id="modalContent">
+                    <!-- 由 JS 動態注入內容 -->
+                </div>
+                <div class="bg-slate-50 dark:bg-slate-800/50 px-6 py-4 flex justify-between gap-3">
+                    <button onclick="window.print()" class="px-4 py-2 bg-academic-navy text-white hover:bg-slate-800 font-bold text-sm rounded-lg shadow-sm transition-all flex items-center gap-1">
+                        列印本組
+                    </button>
+                    <button onclick="closeModal()" class="px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-800 font-bold text-sm rounded-lg transition-all dark:bg-slate-700 dark:text-slate-200 dark:hover:bg-slate-600">
+                        關閉
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript 邏輯控制與數據庫 -->
+    <script>
+        // 1. 本地整合抽籤大數據庫
+        const lotteryData = [
+            {
+                groupId: 1,
+                advisor: "莊文彬",
+                order: 9,
+                members: [
+                    { id: "113212006", name: "楊昀蓁" },
+                    { id: "113212008", name: "徐子淇" },
+                    { id: "113212010", name: "蘇若庭" },
+                    { id: "113212011", name: "簡姿涵" },
+                    { id: "113212013", name: "林妤宣" },
+                    { id: "113212014", name: "林亭諺" }
+                ]
+            },
+            {
+                groupId: 2,
+                advisor: "駱世民",
+                order: 8,
+                members: [
+                    { id: "113212007", name: "洪紫容" },
+                    { id: "113212009", name: "賴亭蓁" },
+                    { id: "113212018", name: "林奕芸" },
+                    { id: "113212022", name: "蔡宜臻" },
+                    { id: "113212025", name: "何惠羽" }
+                ]
+            },
+            {
+                groupId: 3,
+                advisor: "林欣美",
+                order: 2,
+                members: [
+                    { id: "113212020", name: "薛皓宇" },
+                    { id: "113212048", name: "劉乾玄" },
+                    { id: "113212051", name: "李智楷" },
+                    { id: "113212066", name: "郭軍堯" },
+                    { id: "113212073", name: "李重緯" },
+                    { id: "113212077", name: "吳彥德" }
+                ]
+            },
+            {
+                groupId: 4,
+                advisor: "吳淑貞",
+                order: 7,
+                members: [
+                    { id: "113212053", name: "柯宣妤" },
+                    { id: "113212065", name: "李宜君" },
+                    { id: "113212067", name: "陳昀欣" },
+                    { id: "113212071", name: "王韻涵" },
+                    { id: "113212075", name: "陳怡佳" },
+                    { id: "113212085", name: "高翊愷" }
+                ]
+            },
+            {
+                groupId: 5,
+                advisor: "胡毓彬",
+                order: 10,
+                members: [
+                    { id: "113212005", name: "呂佳沂" },
+                    { id: "113212046", name: "陳姿廷" },
+                    { id: "113212055", name: "潘美弦" },
+                    { id: "113212056", name: "謝恩源" },
+                    { id: "113321049", name: "巫騏威" },
+                    { id: "113212037", name: "傅金華" }
+                ]
+            },
+            {
+                groupId: 6,
+                advisor: "吳淑貞",
+                order: 3,
+                members: [
+                    { id: "113212015", name: "陳真霈" },
+                    { id: "113212016", name: "林庭伃" },
+                    { id: "113212017", name: "梁宸彰" },
+                    { id: "113212019", name: "呂元亨" },
+                    { id: "113212072", name: "陸建凱" },
+                    { id: "113212084", name: "丁龍俊" }
+                ]
+            },
+            {
+                groupId: 7,
+                advisor: "莊文彬",
+                order: 1,
+                members: [
+                    { id: "113212012", name: "曾佑明" },
+                    { id: "113212033", name: "蔣佑任" },
+                    { id: "113212039", name: "吳佳欣" },
+                    { id: "113212069", name: "張庭翊" },
+                    { id: "112212081", name: "吳杰恩" },
+                    { id: "112212082", name: "劉馥瑄" }
+                ]
+            },
+            {
+                groupId: 8,
+                advisor: "胡毓彬",
+                order: 6,
+                members: [
+                    { id: "113212021", name: "陳冠瑋" },
+                    { id: "113212068", name: "鄭昱宏" },
+                    { id: "113212074", name: "陳奕任" },
+                    { id: "113212076", name: "張又權" },
+                    { id: "113212079", name: "王碩毅" },
+                    { id: "113212080", name: "朱軒樂" }
+                ]
+            },
+            {
+                groupId: 9,
+                advisor: "許文忠",
+                order: 12,
+                members: [
+                    { id: "113212024", name: "秦菁鈴" },
+                    { id: "113212026", name: "孫孟岑" },
+                    { id: "113212078", name: "陳旻暄" },
+                    { id: "113212081", name: "陳亮穎" },
+                    { id: "113212082", name: "洪湘妮" },
+                    { id: "113212086", name: "余致璟" }
+                ]
+            },
+            {
+                groupId: 10,
+                advisor: "許文忠",
+                order: 5,
+                members: [
+                    { id: "113212001", name: "吳佩珊" },
+                    { id: "113212002", name: "林宇凡" },
+                    { id: "113212003", name: "朱芸儀" },
+                    { id: "113212004", name: "彭嘉盈" },
+                    { id: "113212063", name: "林玥彤" }
+                ]
+            },
+            {
+                groupId: 11,
+                advisor: "林欣美",
+                order: 4,
+                members: [
+                    { id: "113212027", name: "吳嘉真" },
+                    { id: "113212032", name: "鄭義勇" },
+                    { id: "113212038", name: "謝佳伶" },
+                    { id: "113212041", name: "黃美棋" },
+                    { id: "113212044", name: "黎文文" },
+                    { id: "113212045", name: "黃民仁" }
+                ]
+            },
+            {
+                groupId: 12,
+                advisor: "駱世民",
+                order: 11,
+                members: [
+                    { id: "113212028", name: "鍾孟軒" },
+                    { id: "113212029", name: "林寶寶" },
+                    { id: "113212030", name: "莫鵬飛" },
+                    { id: "113212040", name: "楊金寶" },
+                    { id: "113212042", name: "林家有" },
+                    { id: "112212049", name: "李承和" }
+                ]
+            }
+        ];
+
+        let currentActiveView = 'group';
+
+        // 2. 初始化渲染頁面
+        window.addEventListener('DOMContentLoaded', () => {
+            renderGroupView();
+            renderOrderView();
+            renderAdvisorView();
+        });
+
+        // 3. 渲染依組別排列視圖
+        function renderGroupView(filteredData = lotteryData) {
+            const container = document.getElementById('group-grid');
+            container.innerHTML = '';
+            
+            // 按組別排序 1-12
+            const sorted = [...filteredData].sort((a, b) => a.groupId - b.groupId);
+            
+            sorted.forEach(group => {
+                const card = document.createElement('div');
+                card.className = "bg-white dark:bg-academic-darkcard rounded-xl border border-slate-100 dark:border-slate-800 p-6 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 relative overflow-hidden flex flex-col justify-between cursor-pointer card";
+                card.onclick = () => openDetails(group.groupId);
+                
+                card.innerHTML = `
+                    <div>
+                        <!-- 頂部與指導老師 -->
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-mono font-bold text-academic-gold bg-amber-50 dark:bg-amber-950/40 px-2.5 py-1 rounded-md border border-academic-gold/20">GROUP ${group.groupId}</span>
+                            <span class="text-sm font-bold text-slate-700 dark:text-slate-200">
+                                指導老師：<span class="text-academic-navy dark:text-academic-gold text-base">${group.advisor}</span>
+                            </span>
+                        </div>
+                        
+                        <!-- 標題與簡介 -->
+                        <h3 class="text-xl font-bold text-slate-800 dark:text-white mb-2 academic-serif flex items-center gap-1.5">
+                            第 ${group.groupId} 組專題小組
+                        </h3>
+                        
+                        <!-- 學生名單摘要 -->
+                        <div class="mt-4 pt-4 border-t border-slate-100 dark:border-slate-800/80">
+                            <span class="text-xs font-semibold text-slate-400 block mb-2">組員名單 (${group.members.length}人)：</span>
+                            <div class="flex flex-wrap gap-1.5">
+                                ${group.members.map(member => `
+                                    <span class="text-xs bg-slate-50 dark:bg-slate-800 px-2 py-1 rounded border border-slate-100 dark:border-slate-700 font-mono text-slate-600 dark:text-slate-300">
+                                        ${member.name}
+                                    </span>
+                                `).join('')}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 報告發表順序徽章 -->
+                    <div class="mt-6 pt-3 border-t border-dashed border-slate-100 dark:border-slate-800 flex items-center justify-between">
+                        <span class="text-xs text-slate-400">專題競賽發表</span>
+                        <span class="text-xs font-bold text-slate-700 dark:text-slate-300 flex items-center gap-1">
+                            報告順序：
+                            <span class="text-sm text-academic-gold font-black font-mono">第 ${group.order} 順位</span>
+                        </span>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+            toggleNoResults(filteredData.length === 0);
+        }
+
+        // 4. 渲染發表時間軸視圖 (依報告順序排序)
+        function renderOrderView(filteredData = lotteryData) {
+            const container = document.getElementById('order-timeline');
+            container.innerHTML = '';
+
+            // 按報告順序排序 1-12
+            const sorted = [...filteredData].sort((a, b) => a.order - b.order);
+
+            sorted.forEach((group, index) => {
+                const timelineNode = document.createElement('div');
+                timelineNode.className = "relative flex flex-col md:flex-row md:items-start gap-4 md:gap-8 group cursor-pointer transition-all hover:pl-2";
+                timelineNode.onclick = () => openDetails(group.groupId);
+
+                timelineNode.innerHTML = `
+                    <!-- 圓點指標與順序號 -->
+                    <div class="absolute -left-[53px] md:-left-[61px] top-1.5 flex items-center justify-center w-8 h-8 rounded-full bg-white dark:bg-academic-darkcard border-2 border-academic-gold shadow-sm group-hover:scale-110 transition-all">
+                        <span class="text-sm font-black font-mono text-academic-navy dark:text-academic-gold">${group.order}</span>
+                    </div>
+
+                    <!-- 報告卡片區 -->
+                    <div class="flex-1 bg-white dark:bg-academic-darkcard rounded-xl p-5 md:p-6 border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-md transition-all">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+                            <div>
+                                <span class="text-xs font-mono text-slate-400">PRESENTATION ORDER ${group.order}</span>
+                                <h4 class="text-lg font-bold text-slate-800 dark:text-white academic-serif mt-0.5">
+                                    第 ${group.groupId} 專題小組 (第 ${group.order} 發表順位)
+                                </h4>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="text-xs bg-blue-50 dark:bg-slate-800 text-academic-navy dark:text-academic-gold font-bold px-3 py-1 rounded-md border border-blue-100 dark:border-slate-700">
+                                    指導：${group.advisor} 教授
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- 人員清單 -->
+                        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2 pt-4 border-t border-slate-100 dark:border-slate-800/80">
+                            ${group.members.map(member => `
+                                <div class="bg-slate-50 dark:bg-slate-800 p-2 rounded border border-slate-100 dark:border-slate-700 flex flex-col">
+                                    <span class="text-xs font-semibold text-slate-800 dark:text-slate-200">${member.name}</span>
+                                    <span class="text-[10px] font-mono text-slate-400 mt-0.5">${member.id}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+                container.appendChild(timelineNode);
+            });
+            toggleNoResults(filteredData.length === 0);
+        }
+
+        // 5. 渲染依教授分群視圖
+        function renderAdvisorView(filteredData = lotteryData) {
+            const container = document.getElementById('view-advisor');
+            container.innerHTML = '';
+
+            // 計算每位教授對應的組別群
+            const professors = ["胡毓彬", "林欣美", "駱世民", "莊文彬", "吳淑貞", "許文忠"];
+            
+            professors.forEach(prof => {
+                const groupsUnderProf = filteredData.filter(g => g.advisor === prof);
+                
+                // 如果目前篩選下這位教授沒有任何組別，且是在有篩選的情況下，就不呈現
+                if (groupsUnderProf.length === 0) return;
+
+                const profSection = document.createElement('div');
+                profSection.className = "bg-white dark:bg-academic-darkcard rounded-2xl p-6 md:p-8 border border-slate-100 dark:border-slate-800 shadow-sm";
+                
+                profSection.innerHTML = `
+                    <div class="flex items-center justify-between border-b-2 border-academic-gold pb-4 mb-6">
+                        <div class="flex items-center gap-3">
+                            <div class="w-2.5 h-6 bg-academic-navy dark:bg-academic-gold rounded-full"></div>
+                            <h3 class="text-xl md:text-2xl font-black text-slate-800 dark:text-white academic-serif">${prof} 教授指導群</h3>
+                        </div>
+                        <span class="text-xs bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-300 font-bold px-3 py-1.5 rounded-full">
+                            共 ${groupsUnderProf.length} 組
+                        </span>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        ${groupsUnderProf.map(g => `
+                            <div onclick="openDetails(${g.groupId})" class="bg-slate-50 dark:bg-slate-800/40 border border-slate-100 dark:border-slate-800 hover:border-academic-gold rounded-xl p-5 cursor-pointer hover:shadow-sm transition-all">
+                                <div class="flex items-center justify-between mb-3">
+                                    <span class="text-sm font-bold text-academic-navy dark:text-academic-gold font-mono">第 ${g.groupId} 組</span>
+                                    <span class="text-xs bg-amber-50 dark:bg-amber-950/30 text-academic-gold font-bold px-2 py-0.5 rounded border border-academic-gold/10">報告順序: ${g.order}</span>
+                                </div>
+                                <div class="space-y-2 mt-4">
+                                    <span class="text-xs text-slate-400 block font-semibold">專題成員：</span>
+                                    <div class="flex flex-wrap gap-1.5">
+                                        ${g.members.map(m => `
+                                            <span class="text-xs bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 text-slate-600 dark:text-slate-300 px-2 py-1 rounded">
+                                                ${m.name} (${m.id})
+                                            </span>
+                                        `).join('')}
+                                    </div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+                container.appendChild(profSection);
+            });
+            
+            // 如果全部空
+            const hasAnyData = professors.some(prof => filteredData.filter(g => g.advisor === prof).length > 0);
+            toggleNoResults(!hasAnyData);
+        }
+
+        // 6. 視圖即時切換邏輯
+        function switchView(viewType) {
+            currentActiveView = viewType;
+            
+            // 隱藏全部視圖
+            document.querySelectorAll('.view-content').forEach(el => {
+                el.classList.add('hidden');
+                el.classList.remove('active');
+            });
+
+            // 呈現當前選擇視圖
+            const activeEl = document.getElementById(`view-${viewType}`);
+            activeEl.classList.remove('hidden');
+            activeEl.classList.add('active');
+
+            // 更新按鈕聚焦樣式
+            const buttons = ['group', 'order', 'advisor'];
+            buttons.forEach(btn => {
+                const el = document.getElementById(`tab-${btn}`);
+                if (btn === viewType) {
+                    el.className = "px-4 py-2 text-xs sm:text-sm font-bold rounded-lg transition-all text-slate-700 dark:text-slate-300 bg-white dark:bg-slate-700 shadow-sm";
+                } else {
+                    el.className = "px-4 py-2 text-xs sm:text-sm font-bold rounded-lg transition-all text-slate-500 dark:text-slate-400 hover:text-slate-700";
+                }
+            });
+
+            // 即時配合當前的搜尋與過濾值渲染
+            executeSearchAndFilter();
+        }
+
+        // 7. 即時搜尋與篩選引擎
+        function executeSearchAndFilter() {
+            const query = document.getElementById('searchInput').value.trim().toLowerCase();
+            const profSelected = document.getElementById('advisorFilter').value;
+
+            let results = [...lotteryData];
+
+            // 處理下拉選單過濾教授
+            if (profSelected !== 'all') {
+                results = results.filter(g => g.advisor === profSelected);
+            }
+
+            // 處理搜尋關鍵字
+            if (query) {
+                results = results.filter(group => {
+                    const matchGroupNum = `第${group.groupId}組`.includes(query) || group.groupId.toString() === query;
+                    const matchAdvisor = group.advisor.toLowerCase().includes(query);
+                    const matchOrder = `順序${group.order}`.includes(query) || `第${group.order}順位`.includes(query);
+                    const matchMembers = group.members.some(m => 
+                        m.name.toLowerCase().includes(query) || m.id.includes(query)
+                    );
+                    return matchGroupNum || matchAdvisor || matchOrder || matchMembers;
+                });
+            }
+
+            // 依目前的視角重新渲染資料
+            if (currentActiveView === 'group') {
+                renderGroupView(results);
+            } else if (currentActiveView === 'order') {
+                renderOrderView(results);
+            } else if (currentActiveView === 'advisor') {
+                renderAdvisorView(results);
+            }
+        }
+
+        // 監聽器
+        function handleSearch() {
+            executeSearchAndFilter();
+        }
+
+        function handleFilter() {
+            executeSearchAndFilter();
+        }
+
+        // 快速過濾器 (後台保留邏輯以支援重置)
+        function resetFilters() {
+            document.getElementById('advisorFilter').value = 'all';
+            document.getElementById('searchInput').value = '';
+            executeSearchAndFilter();
+        }
+
+        function toggleNoResults(show) {
+            const el = document.getElementById('no-results');
+            if (show) {
+                el.classList.remove('hidden');
+            } else {
+                el.classList.add('hidden');
+            }
+        }
+
+        // 8. 專題組別詳細卡片彈出式 Modal
+        function openDetails(groupId) {
+            const group = lotteryData.find(g => g.groupId === groupId);
+            if (!group) return;
+
+            const modal = document.getElementById('detailsModal');
+            const content = document.getElementById('modalContent');
+
+            content.innerHTML = `
+                <div class="text-center sm:text-left">
+                    <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-4 mb-5">
+                        <h3 class="text-2xl font-black text-academic-navy dark:text-academic-gold academic-serif" id="modal-title">
+                            第 ${group.groupId} 專題小組詳情
+                        </h3>
+                        <span class="text-xs bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-300 font-bold px-3 py-1 rounded-md">
+                            GROUP ID: ${group.groupId}
+                        </span>
+                    </div>
+
+                    <!-- 雙欄資訊呈現 -->
+                    <div class="grid grid-cols-2 gap-4 mb-6">
+                        <div class="bg-slate-50 dark:bg-slate-800 p-4 rounded-xl border border-slate-100 dark:border-slate-800">
+                            <span class="text-xs text-slate-400 block">學術指導教授</span>
+                            <span class="text-lg font-bold text-slate-800 dark:text-white">${group.advisor} 教授</span>
+                        </div>
+                        <div class="bg-amber-50/50 dark:bg-amber-950/20 p-4 rounded-xl border border-academic-gold/10">
+                            <span class="text-xs text-academic-gold block">競賽發表報告順序</span>
+                            <span class="text-lg font-bold text-academic-navy dark:text-academic-gold font-mono">第 ${group.order} 順位</span>
+                        </div>
+                    </div>
+
+                    <!-- 成員詳細表格 -->
+                    <div class="space-y-3">
+                        <span class="text-sm font-bold text-slate-700 dark:text-slate-300 block">專題研究組員清單</span>
+                        <div class="border border-slate-100 dark:border-slate-800 rounded-xl overflow-hidden">
+                            <table class="min-w-full divide-y divide-slate-100 dark:divide-slate-800 text-left text-sm">
+                                <thead class="bg-slate-50 dark:bg-slate-800/80">
+                                    <tr>
+                                        <th class="px-4 py-3 text-slate-400 font-semibold">#</th>
+                                        <th class="px-4 py-3 text-slate-400 font-semibold">學號 (Student ID)</th>
+                                        <th class="px-4 py-3 text-slate-400 font-semibold">姓名 (Name)</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-100 dark:divide-slate-800 dark:text-slate-200">
+                                    ${group.members.map((m, idx) => `
+                                        <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/50">
+                                            <td class="px-4 py-3 text-slate-400">${idx + 1}</td>
+                                            <td class="px-4 py-3 font-mono">${m.id}</td>
+                                            <td class="px-4 py-3 font-semibold">${m.name}</td>
+                                        </tr>
+                                    `).join('')}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('detailsModal');
+            modal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // 9. 暗色模式切換 (Dark Mode Control)
+        function toggleDarkMode() {
+            const isDark = document.documentElement.classList.toggle('dark');
+            const themeIcon = document.getElementById('themeIcon');
+            
+            if (isDark) {
+                localStorage.setItem('theme', 'dark');
+                themeIcon.innerHTML = `<path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>`;
+                themeIcon.className = "w-5 h-5 text-indigo-400";
+            } else {
+                localStorage.setItem('theme', 'light');
+                themeIcon.innerHTML = `<path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path>`;
+                themeIcon.className = "w-5 h-5 text-amber-500";
+            }
+        }
+
+        // 初始化暗色模式偏好
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            const themeIcon = document.getElementById('themeIcon');
+            themeIcon.innerHTML = `<path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>`;
+            themeIcon.className = "w-5 h-5 text-indigo-400";
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+</body>
+</html>
